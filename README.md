@@ -1,6 +1,5 @@
-# Phobos
+# Phobos - Version 1.0 – April 19, 2019
 
-Phobos Version 1.0 – April 19, 2019
 Distributed by Felippe E. Amorim, Thiago C. Moulin and Olavo B. Amaral.
 ====================================================================
 
@@ -8,9 +7,11 @@ This pdf file describes how to use Phobos
 
 ====================================================================
 WHAT IS PHOBOS?
+
 Phobos is a software for the automated analysis of freezing behavior in rodents. Unlike other programs, it uses manual quantification of a short video to calibrate parameters for optimal freezing detection. Phobos works with 3 user interfaces (UIs) for this purpose. The main user UI is where the user loads videos for quantification, defines an output folder and creates the .xls file with the results. The Video Parameters UI, is where the user defines the beginning and end times for freezing detection in the videos and crops the image to restrict the analysis to a specific area. Finally, the Manual Quantification UI is used to manually quantify freezing in a video, which will then be used as a reference for the calibration process.
 
 PURPOSE OF THIS MANUAL
+
 This manual is meant to help you to get started with Phobos. The software was designed to be simple and straightforward to use. However, some instructions are necessary for the user to understand how the system works. These instructions are also conveyed by the message boxes that appear during the process described below.
 
 QUANTIFYING FREEZING IN A LIST OF VIDEOS
@@ -48,6 +49,7 @@ STEP 2) SETTING UP A VIDEO LIST
 - To calibrate parameters through manual quantification, press the "Calibrate the parameters" button. This will open the Manual Quantification UI with new instructions. If you already have a calibration file (e.g. from a previously performed manual quantification), press the "Run with Calibration File" button instead and skip Step 3.
 
 STEP 3) MANUAL QUANTIFICATION
+
 Follow the instructions displayed on the right side of the software to load your video list or read the following steps:
 3.1) LOAD VIDEO STEP
 - Press the "Load Videos" button and choose the video(s) that you want to quantify manually for calibration. For proper calibration, you should choose a video that was selected in the main UI video list or one recorded under the same conditions.
@@ -55,6 +57,7 @@ Follow the instructions displayed on the right side of the software to load your
 It is possible to quantify more than one video in this step, but this is usually necessary only if the first video fails to yield accurate calibration (see step 3.3) It is also possible to remove videos from the list: just select the video that you want to delete in the list and click in the "Remove Video". This can be useful if the first video does not meet criteria for valid calibration (see below).
 
 3.2) MANUALLY QUANTIFY THE SELECTED VIDEO(S) FOR CALIBRATION
+
 Please read all the instructions in this step before starting quantification.
 - Press the "Start manual scoring" button. This will start the manual quantification step for each video included in the video list. A chronometer will appear displaying the amount of freezing counted by the user.
 - Press the "Freezing” button to quantify freezing behavior. When the freezing button is green and displaying “Freezing on”, the program is counting time as freezing behavior. When it is red and displaying “Freezing off”, the program is considering the animal to be moving.  
@@ -63,6 +66,7 @@ Please read all the instructions in this step before starting quantification.
 - After manual quantification is finished, Phobos will create a file with the suffix "output.mat" for each manually quantified video. If the total freezing time is less than 10 s or more than 90% of the video, we recommend using another video for the calibration process, as this is likely to yield faulty calibration. In this case, go back to the previous screen and remove the video from the list before loading a new one.
 
 3.3) CALIBRATION
+
 The calibration step compares the freezing value of each 20-second time bin obtained by manual quantification with the corresponding value obtained by automatic quantification using different parameters. The step aims to find the parameter combination with the best correlation with manual quantification, as measured by linear fitting. The r value and slope obtained in calibration can also be used to evaluate whether the obtained calibration is likely to generate reliable freezing assessment.
 - Press the "Calibrate" button. The software will automatically load the file(s) created during the manual quantification process. One must keep the video(s) to be used for calibration in the list before doing this, as removing them will cause the software not to recognize the filename.
 - Crop the image following the instructions displayed on the message box, as performed in step 2.4.
@@ -70,11 +74,13 @@ The calibration step compares the freezing value of each 20-second time bin obta
 - After calibration is finished, just close the manual quantification window to go on to the automatic quantification process for the remaining videos.
 
 STEP 4) AUTOMATIC QUANTIFICATION
+
 - Press the "Run with Calibration File" button and choose the calibration file that you want to use to quantify your video list – usually the one you have just generated by manual quantification. The calibration file is located in the “Calibration_files” folder located in the current folder that the program is running, and has the preffix "Calibration_using_").
 - When quantification is started, the program will run the selected video(s) in the main UI as a black and white video and a progress box will appear showing the progress of quantification for the current video. Wait for the program to quantify all the videos in the list – which will take a variable amount of time depending on the hardware in which the program is running. For each video, a separate output file containing freezing epochs over time will be generated under the name “video name”_freezing_results_data.mat. 
 ATTENTION: Do not close the program or the progress bar while automatic quantification is under way. This will interrupt the process. However, it is possible to minimize the software and progress bar while automatic quantification is running.
 
 STEP 5) EXPORTING RESULTS TO A XLS FILE
+
 This step uses the .mat file with the results to generate an MS-Excel file (.xls) displaying the total freezing time of each video, as well as for specific time bins with a length defined by the user. The default for the program is 20 s.
 - If you want to export your data in the .mat file to a .xls file, fill in the desired time bin duration for freezing to be measured in the “Time Bin (s)” field. After this, click the "Generate .xls file" button and choose the output .mat file(s) to be used for this purpose.  These are saved under the filename: “video name”_freezing_results_data.mat in the Results_files folder. It is possible to select more than one file by using Ctrl+left click or shift+arrow key.
 - The program will then ask for a destination folder and file name to save the .xls file. Once it is complete, a confirmation window will appear with this information. The .xls file will have the total freezing time for the video, as well as the freezing time for the selected time bins from all the results files selected (with the specific time bin for each video specified in the first line of the table).
