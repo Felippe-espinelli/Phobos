@@ -242,13 +242,13 @@ for v = 1:(ResultNum_2-1)
     % INITIATE STOPWATCH
     
     
-    TIMER_FIGURE = figure('Name','Stopwatch',...
+    TIMER_FIGURE = figure('Name','Freezing Time Stopwatch',...
         'Numbertitle','off',...
         'Position',[100 500 350 100],...
         'Menubar','none',...
         'Resize','off');
     
-    TIMER_FIGURE_TOTAL = figure('Name','Stopwatch',...
+    TIMER_FIGURE_TOTAL = figure('Name','Time Elapsed',...
         'Numbertitle','off',...
         'Position',[100 635 350 100],...
         'Menubar','none',...
@@ -274,6 +274,7 @@ for v = 1:(ResultNum_2-1)
     stopwatch_time_total = formatTimeFcn(0);
     set(Timer_display,'String',stopwatch_time);
     set(Timer_display_total,'String',stopwatch_time);
+    count_for_time_elapsed = 0;
     
     % START VIDEO LOOP
     for k=start:finish-1
@@ -289,7 +290,8 @@ for v = 1:(ResultNum_2-1)
             pause(frame_by_frame_time_original - frame_normalization);
         end
         
-        Time_elapsed_total = k-start/videoframerate;
+        count_for_time_elapsed = count_for_time_elapsed + 1;
+        Time_elapsed_total = count_for_time_elapsed/videoframerate;
         stopwatch_time_total = formatTimeFcn(Time_elapsed_total);
         set(Timer_display_total,'String',stopwatch_time_total);
         

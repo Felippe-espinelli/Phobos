@@ -1,4 +1,4 @@
-% Funcao que correlaciona o freezing manual e o freezing automatico. A saida da funcao √© o melhor calibration para o v√≠deo.
+% Funcao que correlaciona o freezing manual e o freezing automatico. A saida da funcao È o melhor calibration para o vÌdeo.
 
 function [threshold_on, threshold_off,rho,maximum_correlation,difference_index,indice_final] = correlation_calibration_image(filename)
 
@@ -16,7 +16,7 @@ end
 
 clear freezing_intervals_split videoframerate;
 
-%% Carrega os dados do freezing automatico e faz correla√ß√£o
+%% Carrega os dados do freezing automatico e faz correlaÁ„o
 
 rho = zeros(6,1);
 
@@ -36,7 +36,7 @@ for loop_number = 23:29
     rho(loop_number) = corr(manual_freezing_cells,automatic_freezing_cells);
 end
 
-%% Pega os melhores par√¢metros da correla√ß√£o
+%% Pega os melhores par‚metros da correlaÁ„o
 
 maximum_correlation = find(rho == max(rho));
 

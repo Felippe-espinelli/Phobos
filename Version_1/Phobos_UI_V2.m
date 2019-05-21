@@ -335,11 +335,14 @@ else
     return;
 end
 
+time_interval_for_freezing_quantification = 20;
+
 hForm = gcf;             % Save current figure handle
 
 %%% GET BEST PARAMETERS
 
 [FileName_Manual, FilePath_Manual] = uigetfile('*.mat','Select the calibration .mat file');
+[filename_output, pathname_output] = uiputfile('*.xls', 'Choose a file name');
 
 load([FilePath_Manual FileName_Manual],'threshold_on', 'threshold_off', 'framesfrz');
 
@@ -355,14 +358,31 @@ for v = 1:(ResultNum-1)
     load([get(handles.PathFile_Auto_Videos,'string') '\Videolist_files\' [ResultsData(v).RunName] 'parameters.mat']);
     
     freezing_func(start,finish,video,videoframerate,rate,framesfrz,rect,[get(handles.PathFile_Auto_Videos,'string') '\Results_files\' filename_to_save],...
-        1,time_interval,threshold_on,threshold_off,1,2,0);
+        1,time_interval_for_freezing_quantification ,threshold_on,threshold_off,1,2,0);
     
     clear start finish video videoframerate rate rect filename_to_save
+    
+        
 end
 
+for v = 1:(ResultNum-1)
+    
+    video_row = v;
+      
+    load([get(handles.PathFile_Auto_Videos,'string') '\Results_files\' [ResultsData(v).RunName] '_freezing_results_data.mat'],...
+        'filename', 'celltfrz','start', 'finish', 'rate', 'videoframerate');
+    
+    Phobos_output_excel(filename,celltfrz,rate,videoframerate,start,finish,time_interval,...
+        filename_output, pathname_output, video_row, ResultNum);
+    
+end
+
+winopen([pathname_output filename_output]);
 msgbox('Done!','Success','none');
 
 end
+
+
 
 % --- Executes on button press in xls_generation.
 function xls_generation_Callback(hObject, eventdata, handles)
@@ -389,7 +409,7 @@ else
         
         load(fullfile(pathname_for_excel, filename_for_excel{ii}),'filename', 'celltfrz','start', 'finish', 'rate', 'videoframerate');
         
-        Phobos_output_excel(filename,celltfrz,rate,videoframerate,start,finish,time_interval, filename_output, pathname_output, video_row);
+        Phobos_output_excel(filename,celltfrz,rate,videoframerate,start,finish,time_interval, filename_output, pathname_output, video_row, numfiles_for_excel);
         
     end
     msgbox('Done!','Success','none');
