@@ -1,4 +1,4 @@
-# Phobos - Version 1.0 – May 21, 2019
+# Phobos - Version 1.2 – June 22, 2019 [DEPRECATED]
 
 Distributed by Felippe E. Amorim, Thiago C. Moulin and Olavo B. Amaral.
 ====================================================================
